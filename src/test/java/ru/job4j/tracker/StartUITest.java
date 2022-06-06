@@ -79,7 +79,6 @@ public class StartUITest {
                         + "Menu:" + ln
                         + "0. Edit item" + ln
                         + "1. Exit Program" + ln
-                        + "=== Exit Program ===" + ln
         ));
     }
 
@@ -175,7 +174,7 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator()
+                "Menu:" + System.lineSeparator()
                         + "0. Exit Program" + System.lineSeparator()
         ));
     }
