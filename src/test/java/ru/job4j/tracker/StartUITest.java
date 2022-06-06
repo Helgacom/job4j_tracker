@@ -72,12 +72,12 @@ public class StartUITest {
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu:" + ln
-                        + "0. Edit item" + ln
+                        + "0. Edit Item" + ln
                         + "1. Exit Program" + ln
                         + "=== Edit item ===" + ln
                         + "Заявка изменена успешно." + ln
                         + "Menu:" + ln
-                        + "0. Edit item" + ln
+                        + "0. Edit Item" + ln
                         + "1. Exit Program" + ln
         ));
     }
