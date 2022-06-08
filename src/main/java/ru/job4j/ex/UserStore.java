@@ -17,11 +17,10 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        boolean validate = true;
         if (!user.isValid() || user.getUsername().length() < 3) {
             throw new UserInvalidException("User isn't valid");
         }
-        return validate;
+        return true;
     }
 
     public static void main(String[] args) {
@@ -33,8 +32,10 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UserInvalidException ie) {
+            ie.printStackTrace();
+        } catch (UserNotFoundException nfe) {
+            nfe.printStackTrace();
         }
     }
 }
