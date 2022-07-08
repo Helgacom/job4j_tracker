@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -11,7 +13,7 @@ public class ValidateInputTest {
     public void whenInvalidInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"one", "1"}
+                asList("one", "1")
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
@@ -22,7 +24,7 @@ public class ValidateInputTest {
     public void whenValidInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"1"}
+                singletonList("1")
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
@@ -33,7 +35,7 @@ public class ValidateInputTest {
     public void whenSeveralValidInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"1", "4"}
+                asList("1", "4")
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
@@ -47,8 +49,7 @@ public class ValidateInputTest {
     public void whenInvalidMinusInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"-5"}
-        );
+                singletonList("-5"));
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
         assertThat(selected, is(-5));
