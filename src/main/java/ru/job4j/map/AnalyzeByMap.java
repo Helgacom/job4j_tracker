@@ -8,7 +8,7 @@ public class AnalyzeByMap {
         double total = 0;
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                total += subject.score();
+                total += subject.getScore();
                 count += 1;
             }
         }
@@ -22,7 +22,7 @@ public class AnalyzeByMap {
             double total = 0;
             for (Subject subject : pupil.subjects()) {
                 if (count <= pupil.subjects().size()) {
-                    total += subject.score();
+                    total += subject.getScore();
                     count += 1;
                 }
                 if (count == pupil.subjects().size()) {
@@ -41,10 +41,10 @@ public class AnalyzeByMap {
         List<Label> rsl = new ArrayList<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                if (temp.containsKey(subject.name())) {
-                    temp.put(subject.name(), temp.get(subject.name()) + subject.score());
+                if (temp.containsKey(subject.getName())) {
+                    temp.put(subject.getName(), temp.get(subject.getName()) + subject.getScore());
                 } else {
-                    temp.put(subject.name(), subject.score());
+                    temp.put(subject.getName(), subject.getScore());
                 }
             }
         }
@@ -63,7 +63,7 @@ public class AnalyzeByMap {
             double total = 0;
             for (Subject subject : pupil.subjects()) {
                 if (count <= pupil.subjects().size()) {
-                    total += subject.score();
+                    total += subject.getScore();
                     count += 1;
                 }
                 if (count == pupil.subjects().size()) {
@@ -82,10 +82,10 @@ public class AnalyzeByMap {
         List<Label> rsl = new ArrayList<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                if (temp.containsKey(subject.name())) {
-                    temp.put(subject.name(), temp.get(subject.name()) + subject.score());
+                if (temp.containsKey(subject.getName())) {
+                    temp.put(subject.getName(), temp.get(subject.getName()) + subject.getScore());
                 } else {
-                    temp.put(subject.name(), subject.score());
+                    temp.put(subject.getName(), subject.getScore());
                 }
             }
         }
