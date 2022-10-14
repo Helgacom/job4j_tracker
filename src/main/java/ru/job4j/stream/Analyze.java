@@ -42,18 +42,17 @@ public class Analyze {
                         .mapToInt(p -> p.score())
                         .sum()))
                 .max(Comparator.comparing(Tuple::score))
-                .get();
+                .orElse(null);
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
         return stream
                 .flatMap(pupil -> pupil.subjects().stream())
                 .collect(Collectors.groupingBy(Subject::name,
-                        LinkedHashMap::new,
                         Collectors.summingDouble(Subject::score)))
                 .entrySet().stream()
                 .map(s -> new Tuple(s.getKey(), s.getValue()))
                 .max(Comparator.comparing(Tuple::score))
-                .get();
+                .orElse(null);
     }
 }
