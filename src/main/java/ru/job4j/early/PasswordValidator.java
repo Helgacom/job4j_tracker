@@ -14,12 +14,11 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should be length [8, 32]");
         }
 
-        if (password.toLowerCase().contains("qwerty")
-                || password.contains("12345")
-                || password.toLowerCase().contains("password")
-                || password.toLowerCase().contains("admin")
-                || password.toLowerCase().contains("user"))  {
-            throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
+        String[] arrayEx = new String[] {"qwerty", "12345", "password", "admin", "user"};
+        for (String s : arrayEx) {
+            if (password.toLowerCase().contains(s)) {
+                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
+            }
         }
 
         int count1 = 0;
@@ -27,9 +26,10 @@ public class PasswordValidator {
         int count3 = 0;
         int count4 = 0;
         char[] array = password.toCharArray();
-        for (int i = 0; i < password.length(); i++) {
-            if (isUpperCase(array[i])) {
+        for (char el : array) {
+            if (isUpperCase(el)) {
                 count1++;
+                break;
             }
         }
 
@@ -37,9 +37,10 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
 
-        for (int i = 0; i < password.length(); i++) {
-            if (isLowerCase(array[i])) {
+        for (char el : array) {
+            if (isLowerCase(el)) {
                 count2++;
+                break;
             }
         }
 
@@ -47,9 +48,10 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
 
-        for (int i = 0; i < password.length(); i++) {
-            if (isDigit(array[i])) {
+        for (char el : array) {
+            if (isDigit(el)) {
                 count3++;
+                break;
             }
         }
 
@@ -57,9 +59,10 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one figure");
         }
 
-        for (int i = 0; i < password.length(); i++) {
-            if (!isLetterOrDigit(array[i])) {
+        for (char el : array) {
+            if (!isLetterOrDigit(el)) {
                 count4++;
+                break;
             }
         }
 
