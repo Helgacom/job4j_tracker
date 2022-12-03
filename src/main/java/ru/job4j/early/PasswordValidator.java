@@ -29,7 +29,15 @@ public class PasswordValidator {
         for (char el : array) {
             if (isUpperCase(el)) {
                 count1++;
-                break;
+            }
+            if (isLowerCase(el)) {
+                count2++;
+            }
+            if (isDigit(el)) {
+                count3++;
+            }
+            if (!isLetterOrDigit(el)) {
+                count4++;
             }
         }
 
@@ -37,33 +45,12 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
 
-        for (char el : array) {
-            if (isLowerCase(el)) {
-                count2++;
-                break;
-            }
-        }
-
         if (count2 == 0) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
 
-        for (char el : array) {
-            if (isDigit(el)) {
-                count3++;
-                break;
-            }
-        }
-
         if (count3 == 0) {
             throw new IllegalArgumentException("Password should contain at least one figure");
-        }
-
-        for (char el : array) {
-            if (!isLetterOrDigit(el)) {
-                count4++;
-                break;
-            }
         }
 
         if (count4 == 0) {
