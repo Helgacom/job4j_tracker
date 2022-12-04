@@ -21,39 +21,39 @@ public class PasswordValidator {
             }
         }
 
-        int count1 = 0;
-        int count2 = 0;
-        int count3 = 0;
-        int count4 = 0;
+        int uppercaseCheck = 0;
+        int lowercaseCheck = 0;
+        int figureCheck = 0;
+        int specialSymbolCheck = 0;
         char[] array = password.toCharArray();
         for (char el : array) {
             if (isUpperCase(el)) {
-                count1++;
+                uppercaseCheck++;
             }
             if (isLowerCase(el)) {
-                count2++;
+                lowercaseCheck++;
             }
             if (isDigit(el)) {
-                count3++;
+                figureCheck++;
             }
             if (!isLetterOrDigit(el)) {
-                count4++;
+                specialSymbolCheck++;
             }
         }
 
-        if (count1 == 0) {
+        if (uppercaseCheck == 0) {
             throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
 
-        if (count2 == 0) {
+        if (lowercaseCheck == 0) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
 
-        if (count3 == 0) {
+        if (figureCheck == 0) {
             throw new IllegalArgumentException("Password should contain at least one figure");
         }
 
-        if (count4 == 0) {
+        if (specialSymbolCheck == 0) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");
         }
         return password;
