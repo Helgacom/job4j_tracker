@@ -1,0 +1,1 @@
+alter table items add column chacked boolean not null default false;

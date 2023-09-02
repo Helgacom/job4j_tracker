@@ -1,0 +1,1 @@
+alter table items drop column chacked;
