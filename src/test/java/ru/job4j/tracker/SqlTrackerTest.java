@@ -44,7 +44,7 @@ public class SqlTrackerTest {
 
     @AfterEach
     public void wipeTable() throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("delete from items")) {
+        try (PreparedStatement statement = connection.prepareStatement("delete from items;")) {
             statement.execute();
         }
     }
@@ -54,7 +54,8 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        assertThat(tracker.findById(item.getId())).isEqualTo(item);
+        Item rsl = tracker.findById(item.getId());
+        assertThat(rsl).isEqualTo(item);
     }
 
     @Test
@@ -64,7 +65,8 @@ public class SqlTrackerTest {
         Item item2 = new Item("item2");
         tracker.add(item1);
         tracker.add(item2);
-        assertThat(tracker.findAll().containsAll(List.of(item1, item2)));
+        List<Item> rsl = tracker.findAll();
+        assertThat(rsl).containsExactly(item1, item2);
     }
 
     @Test
@@ -74,7 +76,8 @@ public class SqlTrackerTest {
         Item item2 = new Item("item2");
         tracker.add(item1);
         tracker.add(item2);
-        assertThat(tracker.findByName("item1").contains(item1));
+        List<Item> rsl = tracker.findByName("item1");
+        assertThat(rsl).containsExactly(item1).hasSize(1);
     }
 
     @Test
@@ -84,15 +87,18 @@ public class SqlTrackerTest {
         Item item2 = new Item("item2");
         tracker.add(item1);
         tracker.add(item2);
-        assertThat(tracker.findById(1).equals(item1));
+        Item rsl = tracker.findById(item1.getId());
+        assertThat(rsl).isEqualTo(item1);
     }
 
     @Test
     public void whenReplace() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item1 = tracker.add(new Item("item1"));
-        tracker.replace(item1.getId(), new Item("newItem"));
-        assertThat(tracker.findById(item1.getId()).getName().equals("newItem"));
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        tracker.add(item1);
+        boolean rsl = tracker.replace(item1.getId(), item2);
+        assertThat(rsl).isTrue();
     }
 
     @Test
@@ -101,6 +107,7 @@ public class SqlTrackerTest {
         Item item1 = new Item("item1");
         tracker.add(item1);
         tracker.delete(item1.getId());
-        assertThat(tracker.findByName("item1").isEmpty());
+        List<Item> rsl = tracker.findByName("item1");
+        assertThat(rsl).isEmpty();
     }
 }
