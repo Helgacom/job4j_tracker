@@ -63,10 +63,12 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item1 = new Item("item1");
         Item item2 = new Item("item2");
+        Item item3 = new Item("item3");
         tracker.add(item1);
         tracker.add(item2);
+        tracker.add(item3);
         List<Item> rsl = tracker.findAll();
-        assertThat(rsl).containsExactly(item1, item2);
+        assertThat(rsl).containsExactly(item1, item2, item3);
     }
 
     @Test
