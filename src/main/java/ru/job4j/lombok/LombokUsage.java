@@ -6,5 +6,24 @@ public class LombokUsage {
         var bird = new BirdData();
         bird.setAge(1);
         System.out.println(bird);
+
+        var role = Role.of()
+                .id(1)
+                .name("ADMIN")
+                .accessBy("create")
+                .accessBy("update")
+                .accessBy("read")
+                .accessBy("delete")
+                .build();
+        System.out.println(role);
+
+        var permission = Permission.of()
+                .id(1)
+                .name("NAME")
+                .rules("one")
+                .rules("two")
+                .rules("three")
+                .build();
+        System.out.println(permission);
     }
 }
